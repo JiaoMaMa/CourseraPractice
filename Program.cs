@@ -4,46 +4,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment1
+namespace ProgrammingAssignment2
 {
     /// <summary>
-    /// Assignment1 code
+    /// Programming Assignment 2 solution
     /// </summary>
     class Program
     {
         /// <summary>
-        /// Calculate distance and angle between two points
+        /// Deals 2 cards to 3 players and displays cards for players
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">command-line arguments</param>
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome! You may use this program to calculate " +
-              "the distance between two points and the angle between those points.");
+            // print welcome message
+            Console.WriteLine("Welcome to the card game! Let's play :)");
 
-            //get first point x,y value
-            Console.Write("Enter the x value of the first point: ");
-            float x1 = float.Parse(Console.ReadLine());
-            Console.Write("Enter the y value of the first point: ");
-            float y1 = float.Parse(Console.ReadLine());
+            // create and shuffle a deck
+            Deck deck = new Deck();
+            deck.Shuffle();
 
-            //get second point x,y value
-            Console.Write("Enter the x value of the second point: ");
-            float x2 = float.Parse(Console.ReadLine());
-            Console.Write("Enter the y value of the second point: ");
-            float y2 = float.Parse(Console.ReadLine());
+            // deal 2 cards each to 3 players (deal properly, dealing
+            // the first card to each player before dealing the
+            // second card to each player)
+            Card card1Player1 = deck.TakeTopCard();
+            Card card1Player2 = deck.TakeTopCard();
+            Card card1Player3 = deck.TakeTopCard();
+            Card card2Player1 = deck.TakeTopCard();
+            Card card2Player2 = deck.TakeTopCard();
+            Card card2Player3 = deck.TakeTopCard();
 
-            //calculate distance between two points
-            float deltaX = x2 - x1;
-            float deltaY = y2 - y1;
-            float distance = (float) Math.Sqrt((deltaX*deltaX) + (deltaY*deltaY));
+            // flip all the cards over
+            card1Player1.FlipOver();
+            card2Player1.FlipOver();
+            card1Player2.FlipOver();
+            card2Player2.FlipOver();
+            card1Player3.FlipOver();
+            card2Player3.FlipOver();
 
-            //calculate angle
-            float angle = (float) (Math.Atan2(deltaY,deltaX)*180/Math.PI);
+            // print the cards for player 1
+            Console.WriteLine("player 1's first card: " + card1Player1.Rank + " of " + card1Player1.Suit);
+            Console.WriteLine("player 1's second card: " + card2Player1.Rank + " of " + card2Player1.Suit);
 
-            //print the result
-            Console.WriteLine("Distance between the two points is: " + distance);
-            Console.WriteLine("Angle needs to be moved: " + angle);
+            // print the cards for player 2
+            Console.WriteLine("player 2's first card: " + card1Player2.Rank + " of " + card1Player2.Suit);
+            Console.WriteLine("player 2's second card: " + card2Player2.Rank + " of " + card2Player2.Suit);
 
+            // print the cards for player 3
+            Console.WriteLine("player 3's first card: " + card1Player3.Rank + " of " + card1Player3.Suit);
+            Console.WriteLine("player 3's second card: " + card2Player3.Rank + " of " + card2Player3.Suit);
+
+            Console.WriteLine();
         }
     }
 }
